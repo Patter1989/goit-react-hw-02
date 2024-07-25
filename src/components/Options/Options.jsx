@@ -1,9 +1,9 @@
-// import css from "./Options.module.css";
+import css from "./Options.module.css";
 
 
 const Options = ({ updateFeedback, totalFeedback, resetFeedback }) => {
 	return (
-		<ul>
+		<ul className={css.optionsList}>
 			<li>
 				<button
 					type='button'
