@@ -1,0 +1,33 @@
+.friendList {
+  display: flex;
+  gap: 30px;
+}
+
+.friendWrapper {
+  box-sizing: border-box;
+  padding: 15px;
+  width: 160px;
+  border: 2px solid black;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.friendName {
+  font-size: 36px;
+  margin-bottom: 5px;
+}
+
+.friendStatus{
+  font-size: 24px;
+}
+
+.friendStatusOn {
+  color: rgb(6, 202, 6);
+}
+
+.friendStatusOff {
+  color: rgb(241, 3, 3);
+}
