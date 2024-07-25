@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Section from "./components/Section/Section.jsx";
 import Description from "./components/Description/Description.jsx"
 import Notification from "./components/Notification/Notification.jsx";
@@ -8,11 +8,23 @@ import Feedback from "./components/Feedback/Feedback.jsx";
 
 
 const App = () => {
-	const [feedbacks, setFeedbacks] = useState({
+	const [feedbacks, setFeedbacks] = useState(() => {
+		const savedFeedbacks = window.localStorage.getItem("saved-feedbacks");
+		if (savedFeedbacks !== null) {
+			return JSON.parse(savedFeedbacks);
+		}
+		return {
 		good: 0,
 		neutral: 0,
 		bad: 0,
+	}
 	});
+	useEffect(() => {
+		window.localStorage.setItem(
+			"saved-feedbacks",
+			JSON.stringify(feedbacks)
+		);
+	}, [feedbacks]);
 	const resetFeedback = () => {
 		setFeedbacks({good: 0, neutral: 0, bad: 0})
 	}
@@ -21,7 +33,7 @@ const App = () => {
 	};
 
 	const totalFeedback = feedbacks.good + feedbacks.neutral + feedbacks.bad;
-	const positiveFeedback = Math.round((feedbacks.good / totalFeedback) * 100);
+	const positiveFeedback = totalFeedback ? Math.round((feedbacks.good / totalFeedback) * 100) : 0;
 	return (
 		<>
 			<Section>
